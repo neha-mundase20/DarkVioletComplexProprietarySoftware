@@ -20,7 +20,8 @@ int linearSearch(int arr[], int n, int key) {
   return -1;
 }
 
-int binarySearch(int arr[], int n, int key) {
+//non-recursive
+int binarySearchIterative(int arr[], int n, int key) {
   int l = 0, u = n - 1;
 
   while (l <= u) {
@@ -35,8 +36,22 @@ int binarySearch(int arr[], int n, int key) {
   }
 }
 
+//recursive
+int binarySearchRecursive(int arr[],int n,int key,int s,int e){
+  int mid=(s+e)/2;
+  if(arr[mid]==key){
+    return mid;
+  }
+  else if(arr[mid]>key){
+    binarySearchRecursive(arr,n,key, s,mid-1);
+  }
+  else{
+    binarySearchRecursive(arr,n,key, mid+1,e);
+  }
+}
+
 int main() {
-  int arr[20], n, val1, val2, key;
+  int arr[20], n, val1, val2, val3, key;
 
   cout << "\n"
        << "Enter the number of elements:"
@@ -52,8 +67,12 @@ int main() {
   val1 = linearSearch(arr, n, key);
   cout << "\n" << val1 << "\n";
 
-  val2 = binarySearch(arr, n, key);
+  val2 = binarySearchIterative(arr, n, key);
   cout << "\n" << val2 << "\n";
+
+  int s=0,e=n-1;
+   val3 = binarySearchRecursive(arr, n, key,s,e);
+   cout << "\n" << val3 << "\n";
 
   return 0;
 }
