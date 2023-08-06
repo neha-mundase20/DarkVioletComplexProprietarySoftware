@@ -39,14 +39,19 @@ int binarySearchIterative(int arr[], int n, int key) {
 //recursive
 int binarySearchRecursive(int arr[],int n,int key,int s,int e){
   int mid=(s+e)/2;
+  //base case
+  if(s>e){
+    return;
+  }
+  //base case
   if(arr[mid]==key){
     return mid;
   }
   else if(arr[mid]>key){
-    binarySearchRecursive(arr,n,key, s,mid-1);
+    return binarySearchRecursive(arr,n,key, s,mid-1);
   }
   else{
-    binarySearchRecursive(arr,n,key, mid+1,e);
+    return binarySearchRecursive(arr,n,key, mid+1,e);
   }
 }
 
